@@ -9,7 +9,7 @@ const forecast = require('./Utils/forecast')
 
 //Create express application
 const app = express()
-console.log('1- app.js main file')
+
 //setting up port for heroku which gets stores in the environment variable.
 const port = process.env.PORT || 3000
 
@@ -19,26 +19,34 @@ const publicDirectoryPath = path.join(__dirname,'../public')
 const viewPath = path.join(__dirname,'../templates/views')
 const partialsPath = path.join(__dirname,'../templates/partials')
 
+console.log('main file - paths defined')
+
 //setup handlebars engine and views location
 app.set('view engine','hbs')
 app.set('views',viewPath)
 hbs.registerPartials(partialsPath)
 
-console.log('2- app.js main file')
+console.log('main file - handle bars engine')
+
 
 //setup static directory to serve
 app.use(express.static(publicDirectoryPath))
 
 app.get('/',(req,res) => {
-console.log('3- app.js main file')
+
+    console.log('main file - /')
+
     res.render('index',{
         title: 'Weather',
         name: 'Vinit Sangani'
     })
-    console.log('2- app.js main file')
+    
 })
 
 app.get('/about',(req,res) => {
+
+    console.log('main file - /about')
+
     res.render('about',{
         title: 'About Me',
         name:'Vinit Sangani'
@@ -91,7 +99,8 @@ app.get('/help/*',(req,res)=> {
 
 app.get('*',(req,res)=>{
 
-    console.log('1- app.js main file- page not found')
+    console.log('main file - 404 error')    
+
     res.render('404error',{
         title:'404',
         name:'Vinit Sangani',
