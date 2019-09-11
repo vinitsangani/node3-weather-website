@@ -9,7 +9,7 @@ const forecast = require('./Utils/forecast')
 
 //Create express application
 const app = express()
-
+console.log('1- app.js main file')
 //setting up port for heroku which gets stores in the environment variable.
 const port = process.env.PORT || 3000
 
@@ -24,11 +24,13 @@ app.set('view engine','hbs')
 app.set('views',viewPath)
 hbs.registerPartials(partialsPath)
 
+console.log('2- app.js main file')
+
 //setup static directory to serve
 app.use(express.static(publicDirectoryPath))
 
-app.get('',(req,res) => {
-    console.log('1- app.js main file')
+app.get('/',(req,res) => {
+console.log('3- app.js main file')
     res.render('index',{
         title: 'Weather',
         name: 'Vinit Sangani'
@@ -88,6 +90,8 @@ app.get('/help/*',(req,res)=> {
 })
 
 app.get('*',(req,res)=>{
+
+    console.log('1- app.js main file- page not found')
     res.render('404error',{
         title:'404',
         name:'Vinit Sangani',
