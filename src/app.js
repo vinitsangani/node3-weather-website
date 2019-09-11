@@ -28,10 +28,12 @@ hbs.registerPartials(partialsPath)
 app.use(express.static(publicDirectoryPath))
 
 app.get('',(req,res) => {
+    console.log('1- app.js main file')
     res.render('index',{
         title: 'Weather',
         name: 'Vinit Sangani'
     })
+    console.log('2- app.js main file')
 })
 
 app.get('/about',(req,res) => {
